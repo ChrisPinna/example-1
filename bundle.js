@@ -31,8 +31,15 @@
       var NotesView2 = class {
         constructor(model) {
           this.model = model;
+          this.buttonEl = document.querySelector("#add-note");
+          this.buttonEl.addEventListener("click", () => {
+            this.addNote();
+            this.displayNotes();
+            document.querySelector("#input").value = "";
+          });
         }
         displayNotes() {
+          this.#clearDisplay();
           const notes2 = this.model.getNotes();
           notes2.forEach((note) => {
             const newDiv = document.createElement("div");
@@ -41,6 +48,14 @@
             mainConstainerDiv.append(newDiv);
             newDiv.innerHTML = note;
           });
+        }
+        addNote() {
+          const inputEl = document.querySelector("#input");
+          const inputText = inputEl.value;
+          this.model.addNote(inputText);
+        }
+        #clearDisplay() {
+          document.querySelectorAll("div.note").forEach((note) => note.remove());
         }
       };
       module.exports = NotesView2;
@@ -52,7 +67,6 @@
   var NotesView = require_notesView();
   var notes = new NoteModel();
   var notesViews = new NotesView(notes);
-  notes.addNote("get milk");
   notesViews.displayNotes();
   console.log("the notes app is running");
   console.log(notes.getNotes());

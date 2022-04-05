@@ -25,4 +25,5 @@ describe('notesModel', () => {
     notepad.reset();
     expect(notepad.getNotes()).toEqual([]);
   });
+  
 })
