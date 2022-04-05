@@ -21,8 +21,9 @@
         displayMessage() {
           const divEl = document.querySelector("#main-container");
           const newDiv = document.createElement("div");
+          const inputEl = document.querySelector("#message-input");
           newDiv.id = "message";
-          newDiv.innerText = "Where's the sauce?";
+          newDiv.innerText = inputEl.value;
           divEl.append(newDiv);
         }
         hideMessage() {
